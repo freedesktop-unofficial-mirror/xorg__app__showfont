@@ -21,8 +21,8 @@
 
 bin_PROGRAMS = showfont
 
-showfont_CFLAGS = $(DEP_CFLAGS)
-showfont_LDADD = $(DEP_LIBS)
+showfont_CFLAGS = $(SHOWFONT_CFLAGS)
+showfont_LDADD = $(SHOWFONT_LIBS)
 
 showfont_SOURCES =	\
         showfont.c
