@@ -27,6 +27,6 @@ showfont_LDADD = $(SHOWFONT_LIBS)
 showfont_SOURCES =	\
         showfont.c
 
-dist_man_MANS = \
+dist_man1_MANS = \
         showfont.man
 
