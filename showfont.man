@@ -24,8 +24,14 @@ being expanded by the shell.
 If no pattern is given, "*" is assumed.
 .SH "OPTIONS"
 .TP 8
-.B \-server \fIhost\fP:\fIport\fP
+.B \-server \fIservername\fP
 The X font server to contact.
+.I servername 
+must be specified in one of the formats defined in the
+.I Font Server Names
+section of X(__miscmansuffix__).   If not specified, the server name in the
+.B FONTSERVER
+environment variable is used.
 .TP 8
 .BI \-fn " name"
 The font to display.
@@ -71,11 +77,14 @@ where 0 is ImageRectMin, 1 is ImageRectMaxWidth and 2 is ImageRectMax).
 Do not show the font properties.
 .SH "SEE ALSO"
 xfs(__appmansuffix__), fslsfonts(__appmansuffix__), 
-fstobdf(__appmansuffix__), xlsfonts(__appmansuffix__)
+fstobdf(__appmansuffix__), xlsfonts(__appmansuffix__), X(__miscmansuffix__).
 .SH ENVIRONMENT
 .TP 8
 .B FONTSERVER
-the default X font server to contact.
+the default X font server to contact.  The server name must
+be specified in one of the formats defined in the
+.I Font Server Names
+section of X(__miscmansuffix__).
 .SH COPYRIGHT
 Copyright 1991, Network Computing Devices, Inc.
 .br
