@@ -18,3 +18,7 @@ showfont
 showfont.1
 stamp-h1
 *~
+*.o
+showfont-*.tar.*
+ChangeLog
+tags
