@@ -21,7 +21,7 @@
 
 bin_PROGRAMS = showfont
 
-AM_CFLAGS = $(SHOWFONT_CFLAGS)
+AM_CFLAGS = $(SHOWFONT_CFLAGS) $(CWARNFLAGS)
 showfont_LDADD = $(SHOWFONT_LIBS)
 
 showfont_SOURCES =	\
