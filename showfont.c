@@ -80,7 +80,7 @@ static Bool	   extents_only = False; /* -extents_only */
 static FSServer	  *svr;
 
 /* set from bitmap_pad to ImageRectMin, ImageMaxWidth, or ImageMax */
-static int	   bitmap_format;	
+static int	   bitmap_format;
 
 static FSBitmapFormat
 make_format(void)
