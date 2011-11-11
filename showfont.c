@@ -356,7 +356,7 @@ usage(void)
 int
 main(int argc, char **argv)
 {
-    char *servername = "localhost:7100"; /* -server: font server name */
+    const char *servername = "localhost:7100"; /* -server: font server name */
     char *fontname = NULL; /* -fn: font name */
     int         i;
     Font        fid,
