@@ -258,10 +258,10 @@ show_glyphs(
 	    }
 	    offset = offsets[ch].position;
 	    for (r = 0; r < bottom; r++) {
-		unsigned char *row = glyphs + offset;
+		unsigned char *rowp = glyphs + offset;
 
 		for (b = 0; b < charwidth; b++) {
-		    putchar((row[b >> 3] &
+		    putchar((rowp[b >> 3] &
 			     (1 << (7 - (b & 7)))) ? '#' : '-');
 		}
 		putchar('\n');
