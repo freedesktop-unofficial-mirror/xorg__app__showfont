@@ -347,10 +347,16 @@ show_info(
 }
 
 static void
-usage(void)
+usage(const char *msg)
 {
-    printf("%s: [-server servername] [-extents_only] [-noprops] [-lsb] [-msb] [-LSB] [-MSB] [-unit #] [-pad #] [-bitmap_pad value] [-start first_char] [-end last_char] -fn fontname\n", ProgramName);
-    exit(0);
+    if (msg)
+	fprintf(stderr, "%s: %s\n", ProgramName, msg);
+    fprintf(stderr,
+	    "Usage: %s [-server servername] [-extents_only] [-noprops]\n"
+	    "       [-lsb] [-msb] [-LSB] [-MSB] [-unit #] [-pad #] [-bitmap_pad value]\n"
+	    "       [-start first_char] [-end last_char] -fn fontname\n",
+	    ProgramName);
+    exit(1);
 }
 
 int
@@ -375,7 +381,7 @@ main(int argc, char **argv)
 	    if (++i < argc)
 		servername = argv[i];
 	    else
-		usage();
+		usage("-server requires an argument");
 	} else if (!strncmp(argv[i], "-ext", 4)) {
 	    extents_only = True;
 	} else if (!strncmp(argv[i], "-noprops", 7)) {
@@ -392,37 +398,40 @@ main(int argc, char **argv)
 	    if (++i < argc)
 		scan_pad = atoi(argv[i]);
 	    else
-		usage();
+		usage("-pad requires an argument");
 	} else if (!strncmp(argv[i], "-u", 2)) {
 	    if (++i < argc)
 		scan_unit = atoi(argv[i]);
 	    else
-		usage();
+		usage("-unit requires an argument");
 	} else if (!strncmp(argv[i], "-b", 2)) {
 	    if (++i < argc)
 		bitmap_pad = atoi(argv[i]);
 	    else
-		usage();
+		usage("-bitmap_pad requires an argument");
 	} else if (!strncmp(argv[i], "-st", 3)) {
 	    if (++i < argc)
 		first_ch = atoi(argv[i]);
 	    else
-		usage();
+		usage("-start requires an argument");
 	} else if (!strncmp(argv[i], "-e", 2)) {
 	    if (++i < argc)
 		end_ch = atoi(argv[i]);
 	    else
-		usage();
+		usage("-end requires an argument");
 	} else if (!strncmp(argv[i], "-f", 2)) {
 	    if (++i < argc)
 		fontname = argv[i];
 	    else
-		usage();
-	} else
-	    usage();
+		usage("-fn requires an argument");
+	} else {
+	    char msg[128];
+	    snprintf(msg, sizeof(msg), "unrecognized argument: %s", argv[i]);
+	    usage(msg);
+	}
     }
     if (fontname == NULL)
-	usage();
+	usage("no fontname specified");
 
     if (first_ch != 0 && end_ch != ~0 && end_ch < first_ch) {
 	fprintf(stderr,
