@@ -49,6 +49,10 @@ from the X Consortium.
 
 */
 
+#ifdef HAVE_CONFIG_H
+# include "config.h"
+#endif
+
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<string.h>
@@ -354,8 +358,9 @@ usage(const char *msg)
     fprintf(stderr,
 	    "Usage: %s [-server servername] [-extents_only] [-noprops]\n"
 	    "       [-lsb] [-msb] [-LSB] [-MSB] [-unit #] [-pad #] [-bitmap_pad value]\n"
-	    "       [-start first_char] [-end last_char] -fn fontname\n",
-	    ProgramName);
+	    "       [-start first_char] [-end last_char] -fn fontname\n"
+	    "   or: %s -version\n",
+	    ProgramName, ProgramName);
     exit(1);
 }
 
@@ -424,6 +429,9 @@ main(int argc, char **argv)
 		fontname = argv[i];
 	    else
 		usage("-fn requires an argument");
+	} else if (!strcmp(argv[i], "-version")) {
+	    puts(PACKAGE_STRING);
+	    exit(0);
 	} else {
 	    char msg[128];
 	    snprintf(msg, sizeof(msg), "unrecognized argument: %s", argv[i]);
